@@ -1,0 +1,309 @@
+@font-face
+{
+font-family: "Amble";
+
+src:url('webfont/Amble-Bold-webfont.woff');
+src:url('webfont/Amble-Bold-webfont.woff?'iefix) format('woff'),
+    url('webfont/Amble-Bold-webfont.svg') format('svg'),
+    url('webfont/Amble-Bold-webfont.ttf') format('truetype'),
+    url('webfont/Amble-Bold-webfont.eot') format('embedded-opentype')
+
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face 
+{
+    font-family: 'droid_sansregular';
+    src: url('DroidSans-webfont.eot');
+    src: url('DroidSans-webfont.eot?#iefix') format('embedded-opentype'),
+         url('DroidSans-webfont.woff') format('woff'),
+         url('DroidSans-webfont.ttf') format('truetype'),
+         url('DroidSans-webfont.svg#droid_sansregular') format('svg');
+         font-weight: normal;
+        font-style: normal;
+ }
+
+body
+
+{   
+     background:url('image/fond_jaune.png');
+    font-family: Amble,"droid_sansregular",Georgia, arial,"arial black", "times new roman", serif;
+    width: 70%;
+    margin: auto;
+
+   
+    /*pacity: 1;
+    color: black;*/
+    /*display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    /*justify-content: center;    
+     
+  
+    text-align: center;
+    border: 1px solid red;*/
+}
+
+body header, body section
+{
+   background:url('image/separateur.png') repeat-x bottom; 
+   padding-bottom: 10px;
+}
+
+
+header
+{
+
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    /*text-align: center;*/
+    /*border: 2px solid red;*/
+   width: 100%;
+    height:10%;*/
+}
+#logo img
+{
+    width: 50%;
+
+}
+
+#menu 
+{
+    
+
+    list-style-type: none;
+}
+#menu a
+{
+display: block;
+color: grey;
+text-decoration: none;
+}
+.sousMenu
+{
+    display: none;
+}
+#menu:hover .sousMenu{
+    display: block;
+}
+.compte
+{
+    display: flex;
+    justify-content: flex-end;
+    width: 350px;
+    
+    
+}
+
+.utilisateur
+{
+    align-self: flex-start;
+}
+
+.compte img
+{
+    width: 25%;
+}
+
+
+
+
+
+section
+{
+    display: flex;
+    flex-direction:column;
+    flex_wrap: wrap;
+    width: 100%;
+    padding-top: 10px;
+
+}
+
+.acteur 
+{   display :flex;
+    /*flex-direction: row;
+    border :3px solid red;*/
+    justify-content: space-around;
+
+    height: 30%;
+    border-radius: 5px;
+
+    /*flex-wrap: wrap;
+    text-align: center;
+  
+    
+    
+    height: 200px;*/
+    
+    
+}
+.descriptionActeur
+
+{
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+
+    align-self: center;
+    width: 50%;
+}
+
+.commentaire
+{
+    display: flex;
+    flex-direction: column;
+    /*border: 3px solid red;
+    border-radius: 5px;*/
+}
+
+
+/*Section commentaire de la page acteur*/
+.postActeur
+{
+  display: flex;
+  justify-content: space-between;
+  
+   font-size: 1.5em;
+   width: 100%;
+   
+
+}
+.comsActeur
+{
+   border : 1px solid black; 
+   background: url('image/fond_degraderouge.png') repeat-x;
+   border-radius: 5px;
+}
+.likeActeur
+{
+    display: flex;
+    background: url('image/fond_degraderouge.png') repeat-x;
+    border-radius: 5px;
+    justify-content: space-around;
+    border : 1px solid black;
+    width: 20%;
+    align-self: center;
+}
+.likeActeur img
+{
+    width:30px;
+    height: 30px;
+}
+.post
+{
+  
+   border: 2px solid black;
+   width: 25%;
+   align-self: flex-start;
+   text-align: right;
+   /*position: right;
+  /* right: 0px;
+   top: 0px;*/
+
+    
+
+    
+
+}
+.logoActeur 
+{
+    width:20% ;
+
+}
+.logoActeur img
+{
+    width: 200px;
+}
+.bouton
+{
+    display: inline;
+    height: 20px;
+    width: auto;
+    font-size: 0.8em;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+
+    position: absolute;
+    background: url('image/fond_degraderouge.png') repeat-x;
+}
+.bouton img
+{
+    border: 0;
+}
+
+
+.post img
+{
+    width:30px;
+    height: 30px;
+}
+.textarea
+{
+    width: 300px;
+    height: 80px;
+}
+
+#form label
+{
+    display: block;
+    width: 250px;
+    float: left;
+}
+.logo
+{
+    display: flex;
+    justify-content: center;
+
+
+}
+.logo img
+{
+    width: 30%;
+
+}
+.description
+{
+    width: 75%;
+    margin: auto;
+}
+.retour
+{
+    align-self: flex-end;
+    text-align: right;
+}
+footer
+{
+    text-align: center;
+}
+/*
+{
+    text-align:center;
+}
+h3
+{
+    background-color:black;
+    color:white;
+    font-size:0.9em;
+    margin-bottom:0px;
+}
+.news p
+{
+    background-color:#CCCCCC;
+    margin-top:0px;
+}
+.news
+{
+    width:70%;
+    margin:auto;
+}
+
+a
+{
+    text-decoration: none;
+    color: blue;
+}
