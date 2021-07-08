@@ -67,7 +67,7 @@ header
 }
 #logo img
 {
-    width: 50%;
+    width: 30%;
 
 }
 
@@ -125,8 +125,8 @@ section
 
 .acteur 
 {   display :flex;
-    /*flex-direction: row;
-    border :3px solid red;*/
+    /*flex-direction: row;*/
+    border :2px solid black;
     justify-content: space-around;
 
     height: 30%;
