@@ -41,37 +41,14 @@
 
                 <div class="retour"><p><a href="index.php">Retour à la liste des acteurs</a></p></div>
             </h2></div>
-                </section><section><div class="commentaire"><?php                           
+                </section>
+                <section><div class="commentaire"><?php                           
                     
                  //Récupérer le vote correspondant à au id_acteur et au id_user
 
-                $vote=$bdd->prepare('SELECT * FROM vote WHERE id_acteur=:id_acteur AND vote=:vote');
-                $vote->execute(array(":id_acteur"=>$acteur,":vote"=>"1"));
-                $countLike=$vote->rowcount();
-                $vote->execute(array(":id_acteur"=>$acteur,":vote"=>"0"));
-                $countDislike=$vote->rowCOUNT();
+               
                                   
-                //Récupérer le commentaire de l'utilisateur 
-                    if(isset($_POST['boutonPost']))
-                    {
-                        $verifPost=$bdd->prepare("SELECT * FROM post WHERE id_acteur =:id_acteur AND id_user=:id_user" );
-                        $verifPost->execute(array(":id_acteur"=>$acteur, ":id_user"=>$_SESSION["Id_visiteur"]));
-                        $countPost=$verifPost->rowcount();
-                        if ($countPost==0)
-                        {
-                       $leavePost=$bdd->prepare("INSERT INTO post(id_user,id_acteur,post)VALUES(:id_user,:id_acteur,:post)");
-                       $leavePost->execute(array(":id_user"=>$_SESSION["Id_visiteur"],":id_acteur"=>$acteur,":post"=>$_POST["commentaire"]));
-                       echo "\"".htmlspecialchars($_POST["commentaire"])."\"". "."." "."Votre commentaire a bien été enregistré.";
-                        }
-                        else
-                        {
-                        echo "Vous avez déjà laissé un commentaire pour cet acteur.";
-                        }
-                    }
-                    else
-                    {
-
-                    }
+                
 
                     //Récupérer le vote de l'utilisateur 
                     if(isset($_POST['boutonVote']))
@@ -84,18 +61,45 @@
                         {
                         $leaveVote=$bdd->PREPARE("INSERT INTO vote(id_user, id_acteur,vote)VALUES(:id_user,:id_acteur,:vote)");
                         $leaveVote->EXECUTE(array(":id_user"=>$_SESSION["Id_visiteur"],":id_acteur"=>$acteur,":vote"=>$choix));
-                        echo "Votre vote a bien été enregistré.";
+                        
+                        echo '<div class="alert alert-success">'."Votre vote a bien été enregistré."."<br>"."</div>";
+                        //echo "<meta http-equiv='refresh' content='0'>";
+
                         }
                         else
                         {
                         $leaveVote="UPDATE vote SET vote=:newVote WHERE id_acteur=:id_acteur AND id_user=:id_user";
                         $leaveVote=$bdd->prepare($leaveVote);
                         $leaveVote->execute(array(":newVote"=>$choix,":id_acteur"=>$acteur,":id_user"=>$_SESSION["Id_visiteur"]));
-                        echo "Votre vote a été modifié.";
+                        
+                        echo '<div class="alert alert-success">'."Votre vote a été modifié."."</div>";
+                        //echo "<meta http-equiv='refresh' content='0'>";
+                        
                         }
                     }
                     else
                     {
+                    }
+                    //Récupérer le commentaire de l'utilisateur 
+                    if(isset($_POST['boutonPost']))
+                    {
+                        $verifPost=$bdd->prepare("SELECT * FROM post WHERE id_acteur =:id_acteur AND id_user=:id_user" );
+                        $verifPost->execute(array(":id_acteur"=>$acteur, ":id_user"=>$_SESSION["Id_visiteur"]));
+                        $countPost=$verifPost->rowcount();
+                        if ($countPost==0)
+                        {
+                       $leavePost=$bdd->prepare("INSERT INTO post(id_user,id_acteur,post)VALUES(:id_user,:id_acteur,:post)");
+                       $leavePost->execute(array(":id_user"=>$_SESSION["Id_visiteur"],":id_acteur"=>$acteur,":post"=>$_POST["commentaire"]));
+                       echo '<div class="alert alert-success">'."\"".htmlspecialchars($_POST["commentaire"])."\"". "."." "."Votre commentaire a bien été enregistré."."<br>"."</div>";
+                        }
+                        else
+                        {
+                        echo "Vous avez déjà laissé un commentaire pour cet acteur.";
+                        }
+                    }
+                    else
+                    {
+
                     }
                     
                     COMMENTAIRE:
@@ -103,9 +107,15 @@
                     $req->execute(array(":id_acteur"=>$acteur));
                     $count=$req->rowCount();
 
+                    VOTE:
+                    $vote=$bdd->prepare('SELECT * FROM vote WHERE id_acteur=:id_acteur AND vote=:vote');
+                    $vote->execute(array(":id_acteur"=>$acteur,":vote"=>"1"));
+                    $countLike=$vote->rowcount();
+                    $vote->execute(array(":id_acteur"=>$acteur,":vote"=>"0"));
+                    $countDislike=$vote->rowCOUNT();
                     //Afficher le nombre de commentaire et de vote
                     ?>
-                    <div class="commentaire">
+                    
 
                     <div class="postActeur"><?php
                         echo "<div class=\"comsActeur\">".$count." " ."commentaires"."</div>"."<div class=\"likeActeur\">".$countLike."<img src=\"image/like.png\"/>"." ".$countDislike."<img src=\"image/dislike.png\"/>"."<br>"."</div>";
@@ -148,7 +158,7 @@
                 <!--Pour voter-->
                 
                   <p>Avez-vous aimé cet acteur?</p>
-                <form method="POST"> 
+                <form method="POST" action=""> 
                 <p><label for="like"><img src="image/like.png"/></label><input type="radio" name="vote" value="1" id="1" checked="checked">
                 <label for="dislike"><img src="image/dislike.png"/></label><input type="radio" name="vote" value="0" id="0"></p>
                 <p><input type="submit" name="boutonVote" value="Envoyer"/></p>

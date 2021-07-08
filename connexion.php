@@ -45,7 +45,7 @@
                             $_SESSION["Id_visiteur"]=$row["id_user"];
                             $_SESSION["Nom_visiteur"]=$row["nom"];
                             $_SESSION["prenom_visiteur"]=$row["prenom"];
-                            echo "Vous allez être redirigé vers la page que vous avez demandé.";
+                            echo '<div class="alert alert-success">'. "Vous allez être redirigé vers la page que vous avez demandé."."</div>";
                             header("refresh:2; index.php");
                             }            
                             else{
