@@ -79,8 +79,8 @@
              <form method="POST" action="" id="form">
             <p><label for="username"> Nom d'utilisateur </label><input type="text" name="username" id="username" required="required"/></p>
             <p><label for="reponse"> Reponse à la question secrète </label><input type="text" name="reponse" id="reponse" required="required"/></p>
-            <p><label for="nouveauMdp"> Votre nouveau mot de passe </label><input type="text" name="nouveauMdp" id="nouveauMdp"/></p>
-            <p><label for="confirmMdp"> Confirmation de votre nouveau mot de passe </label><input type="text" name="confirmMdp" id="confirmMdp" value=" " /></p>
+            <p><label for="nouveauMdp"> Votre nouveau mot de passe </label><input type="password" name="nouveauMdp" id="nouveauMdp"/></p>
+            <p><label for="confirmMdp"> Confirmation de votre nouveau mot de passe </label><input type="password" name="confirmMdp" id="confirmMdp" value=" " /></p>
             <p><input type="submit" name="resetmdp" value="Valider" onclick="cacherFormulaire()"/></p>
             <!---->
          </form>
