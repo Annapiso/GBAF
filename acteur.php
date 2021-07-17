@@ -42,14 +42,8 @@
                 <div class="retour"><p><a href="index.php">Retour à la liste des acteurs</a></p></div>
             </h2></div>
                 </section>
-                <section><div class="commentaire"><?php                           
-                    
-                 //Récupérer le vote correspondant à au id_acteur et au id_user
-
-               
-                                  
-                
-
+                <section><div class="commentaire"><?php                              
+                                                 
                     //Récupérer le vote de l'utilisateur 
                     if(isset($_POST['boutonVote']))
                     {
@@ -102,6 +96,7 @@
 
                     }
                     
+                    
                     COMMENTAIRE:
                     $req=$bdd->prepare("SELECT * FROM post WHERE id_acteur=:id_acteur");
                     $req->execute(array(":id_acteur"=>$acteur));
@@ -113,14 +108,30 @@
                     $countLike=$vote->rowcount();
                     $vote->execute(array(":id_acteur"=>$acteur,":vote"=>"0"));
                     $countDislike=$vote->rowCOUNT();
-                    //Afficher le nombre de commentaire et de vote
-                    ?>
                     
 
+                   
+                    ?>
+                    
+                    
+                    
                     <div class="postActeur"><?php
-                        echo "<div class=\"comsActeur\">".$count." " ."commentaires"."</div>"."<div class=\"likeActeur\">".$countLike."<img src=\"image/like.png\"/>"." ".$countDislike."<img src=\"image/dislike.png\"/>"."<br>"."</div>";
+                        //afficher le nombre de commentaires et de votes.
+                        echo "<div class=\"comsActeur\">".$count." " ."commentaires"."</div>".
+                        "<div><form method=\"POST\" action=\"\"><input type=\"submit\" name=\"btcommentaire\" value=\"Laisser un commentaire\"/></form></div>"."<div class=\"likeActeur\">".$countLike."<img src=\"image/like.png\"/>"." ".$countDislike."<img src=\"image/dislike.png\"/>"."<br>"."</div>";
                              ?>
+                             
                     </div><?php
+                     if(isset($_POST['btcommentaire']))// AND empty($_POST['boutonVote']))
+                    {
+                    $display = "block";
+                    }
+                    else
+                    {
+                    $display = "none";
+                  
+                    }
+
 
                  
                                  
@@ -138,31 +149,45 @@
                        
                         While($donnees=$req->fetch())
                         {
-                       
-                            echo "<em>" .$donnees["date_add"]."</em>".$donnees["post"]."<br>";
+                             // Récupérer le prénom de celui qui a laissé laissé le commentaire
+                            $id=$donnees["id_user"];
+                            $user=$bdd->prepare("SELECT * FROM account WHERE id_user=:id_user");
+                            $user->execute(array(":id_user"=>$id));
+                            $prenom=$user->FETCH(PDO::FETCH_ASSOC);
+                            echo "<br>"."<em>".$prenom['prenom']."<br>".$donnees["date_add"]."</em>".$donnees["post"]."<br>";
                         }
                         $req->closeCursor();
                     }
-                    echo "<h1>Pour laisser un commentaire :</h1>"."<br>";
-                 //Pour laisser un commentaire
-                ?>
+                   
+                    //Pour laisser un commentaire?>
+                   
 
-           
-               <form method="POST"> 
+                <div id="vote" style="display:<?php echo $display ?>">
+                <h1>Pour laisser un commentaire :</h1>
+                <form method="POST"> 
                 <label for="commentaire"> Votre commentaire </label><br/>
                 <textarea class="textarea" name="commentaire" id="commentaire" rows=" " cols=""></textarea>
                 <p><input type="submit" name="boutonPost" value="Envoyer"/></p>
+
                 </form>
+                </div>
             
               
-                <!--Pour voter-->
+                <!--Pour voter-->          
+                <h1>Avez-vous aimé cet acteur?</h1>
                 
-                  <p>Avez-vous aimé cet acteur?</p>
+                <div id="pouce">
                 <form method="POST" action=""> 
+
                 <p><label for="like"><img src="image/like.png"/></label><input type="radio" name="vote" value="1" id="1" checked="checked">
                 <label for="dislike"><img src="image/dislike.png"/></label><input type="radio" name="vote" value="0" id="0"></p>
                 <p><input type="submit" name="boutonVote" value="Envoyer"/></p>
+                
                 </form>
+                </div>
+                
+                
+
 
 
             <?php

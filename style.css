@@ -27,22 +27,13 @@ src:url('webfont/Amble-Bold-webfont.woff?'iefix) format('woff'),
 body
 
 {   
+   
      background:url('image/fond_jaune.png');
     font-family: Amble,"droid_sansregular",Georgia, arial,"arial black", "times new roman", serif;
     width: 70%;
     margin: auto;
+    text-justify: auto;
 
-   
-    /*pacity: 1;
-    color: black;*/
-    /*display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    /*justify-content: center;    
-     
-  
-    text-align: center;
-    border: 1px solid red;*/
 }
 
 body header, body section
@@ -51,68 +42,82 @@ body header, body section
    padding-bottom: 10px;
 }
 
-
-header
+h1
 {
+    text-align: center;
+}
 
-    
+ul
+{
+list-style-position: inside;
+list-style-type: none;
+}
+
+/* le header */
+header
+{    
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
-    /*text-align: center;*/
-    /*border: 2px solid red;*/
    width: 100%;
     height:10%;*/
 }
+
+/*le logo dans le header*/
 #logo img
 {
     width: 30%;
 
 }
 
+/*info sur la session*/
+.compte
+{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;   
+    width: 100%;    
+    
+}
+
+.utilisateur
+{
+  
+    font-size: 1em;
+
+}
+
+.compte img
+{
+    width: 10%;
+    height: 10%;    
+}
+
+
 #menu 
 {
-    
-
-    list-style-type: none;
+   
+list-style-type: none;
 }
+
 #menu a
 {
 display: block;
 color: grey;
 text-decoration: none;
 }
+
 .sousMenu
 {
     display: none;
 }
+
 #menu:hover .sousMenu{
     display: block;
 }
-.compte
-{
-    display: flex;
-    justify-content: flex-end;
-    width: 350px;
-    
-    
-}
 
-.utilisateur
-{
-    align-self: flex-start;
-}
-
-.compte img
-{
-    width: 25%;
-}
-
-
-
-
-
+/*section*/
 section
 {
     display: flex;
@@ -125,39 +130,89 @@ section
 
 .acteur 
 {   display :flex;
-    /*flex-direction: row;*/
     border :2px solid black;
     justify-content: space-around;
 
     height: 30%;
-    border-radius: 5px;
-
-    /*flex-wrap: wrap;
-    text-align: center;
-  
-    
-    
-    height: 200px;*/
-    
+    border-radius: 5px;   
     
 }
+
+/*logo de l'acteur dans index.php*/
+.logoActeur 
+{
+    width:20% ;
+
+}
+
+.logoActeur img
+{
+    width: 90%;
+    
+   margin-left: 5px;
+   border-radius: 3px;
+}
+
+/*desxcription de l'acteur dans index.php*/
 .descriptionActeur
 
 {
-    display: flex;
-    flex-wrap: wrap;
+    display: flex;   
+    flex-direction: column;
     border: 1px solid black;
-
-    align-self: center;
-    width: 50%;
+    border-radius: 3px;
+    
+    width: 60%;
+    padding-left: 20px;
 }
+
+/*bouton lire la suite */
+.bouton
+{
+   
+    align-self: flex-end;
+    text-align: center;
+    height: 30%;
+    width: 25%;
+    font-size: 1em;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    margin-right: 2px;
+    margin-bottom: 2px;    
+    background: url('image/fond_degraderouge.png') repeat-x;
+}
+
+.bouton img
+{
+    border: 0;
+
+}
+
+
+
+/*nombre de commentaires dans index.php*/
+.post
+{
+    display: inline;
+    flex-wrap: wrap;
+   align-self: center; 
+   width: 25%;   
+   text-align: center;
+   
+}
+.post img
+{
+    width:20%;
+    height: 20%;
+}
+
 
 .commentaire
 {
     display: flex;
     flex-direction: column;
-    /*border: 3px solid red;
-    border-radius: 5px;*/
+   
 }
 
 
@@ -165,19 +220,39 @@ section
 .postActeur
 {
   display: flex;
-  justify-content: space-between;
-  
+  justify-content: space-between;  
    font-size: 1.5em;
-   width: 100%;
-   
-
+   width: 100%;  
 }
+
 .comsActeur
 {
+   width: 30%;
+   height: 27px;
    border : 1px solid black; 
    background: url('image/fond_degraderouge.png') repeat-x;
    border-radius: 5px;
+   text-align: center;
+   align-self: center;
+  
 }
+.commentaire_user
+{
+    display: flex;
+   
+    text-align: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 65%;
+    height: 100px;
+    margin: auto;
+}
+.user{
+width:60%;
+
+}
+
 .likeActeur
 {
     display: flex;
@@ -186,62 +261,23 @@ section
     justify-content: space-around;
     border : 1px solid black;
     width: 20%;
+    height: 27px;
     align-self: center;
+
 }
 .likeActeur img
 {
-    width:30px;
-    height: 30px;
-}
-.post
-{
-  
-   border: 2px solid black;
-   width: 25%;
-   align-self: flex-start;
-   text-align: right;
-   /*position: right;
-  /* right: 0px;
-   top: 0px;*/
-
     
-
-    
-
-}
-.logoActeur 
-{
-    width:20% ;
-
-}
-.logoActeur img
-{
-    width: 200px;
-}
-.bouton
-{
-    display: inline;
-    height: 20px;
-    width: auto;
-    font-size: 0.8em;
-    text-decoration: none;
-    color: white;
-    border-radius: 5px;
-
-    position: absolute;
-    background: url('image/fond_degraderouge.png') repeat-x;
-}
-.bouton img
-{
-    border: 0;
-}
-
-
-.post img
-{
-    width:30px;
+    border: none;
     height: 30px;
+    opacity: 0.9;
 }
+
+
+
+
+
+
 .textarea
 {
     width: 300px;
@@ -280,6 +316,177 @@ footer
 {
     text-align: center;
 }
+.alert-success
+{
+    color: green;
+    font-size: 1.5em;
+    align-self: center;
+}
+
+.alert-failure
+{
+    color: red;
+    font-size: 1.5em;
+    align-self: center;
+
+}
+#pouce
+{
+    display: flex;
+    justify-content:space-around;
+    width: 50%;
+    
+    margin: auto;
+}
+#pouce img
+{
+
+    
+    width: 100px;
+    border: none;
+    opacity: 0.9;
+}
+
+@media all and (max-width: 1024px)
+{
+
+.compte
+{
+    display: flex;
+    justify-content: flex-end;
+    width: auto;
+    
+    
+}
+
+.utilisateur
+{
+    align-self: flex-start;
+    font-size: 0.5em;
+    
+}
+
+.compte img
+{
+    width:30%;
+}
+.post
+{
+display: none;
+}
+/*desxcription de l'acteur dans index.php*/
+.descriptionActeur{
+    width: 80%;
+    margin: auto;
+}
+.bouton
+{
+    width: auto;
+}
+.bouton img
+{
+    display: none;
+}
+
+
+/*taille du texte dans acteur*/
+.likeActeur
+{
+    width: auto;
+    font-size: auto;
+    margin-bottom: 0px;
+}
+.likeActeur img
+{
+    width: 25px;
+    height: 25px;
+}
+.comsActeur
+{
+    width: auto;
+    font-size: auto;
+}
+.com
+{
+
+width: 25%;
+}
+
+
+}
+@media all and (max-device-width: 829px)
+{
+.acteur 
+{   display :flex;
+    flex-direction: column;
+    align-items: center;
+    border :2px solid black;
+    border-radius: 5px;
+    ;
+
+    /*height: 30%;
+    ;*/
+
+}
+/*logo de l'acteur dans index.php*/
+.logoActeur 
+{
+    display: flex;
+    justify-content: center;
+    width:80% ;
+    border: 1px solid black;
+   
+
+   
+    
+
+}
+.logoActeur img
+{
+    width: 80%;
+    
+   margin: auto;
+   border-radius: 3px;
+}
+.bouton
+{
+    align-self: center;
+    width: auto;
+}
+
+
+}
+.bouton img
+{
+    display: none;
+}
+/*taille du texte dans acteur*/
+.likeActeur
+{
+    font-size: 0.8em;
+    margin-bottom: 0px;
+}
+.likeActeur img
+{
+    width: 30px;
+    height: 30px;
+}
+.comsActeur
+{
+    font-size: 0.8em;
+}
+.com
+{
+
+width: 25%;
+}
+
+
+
+}
+
+
+
 /*
 {
     text-align:center;

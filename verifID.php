@@ -28,17 +28,16 @@
             $newMdp=$_POST['nouveauMdp'];
             $confirmMdp=$_POST['confirmMdp'];
             if($username==""||$answer==""||$newMdp==""||$confirmMdp==""){ //Si un des champs est vide
-                echo "*Tous les champs sont obligatoires.";
+                echo "<div class=\"alert alert-failure\">". "*Tous les champs sont obligatoires."."</div>";
             }
             else{ //Si tous les champs sont renseignés
                 try{
                     $req="SELECT * FROM account WHERE username=:username";
                     $req=$bdd->prepare($req);
                     $req->execute(array(":username"=>$username));
-                    $verifReponse=$req->FETCH(PDO::FETCH_ASSOC);
-                   
-                    //$count=$req->rowcount(); //Si l'utilisateur est dans la base
-                    //if ($count==1){
+                    $verifReponse=$req->FETCH(PDO::FETCH_ASSOC);                   
+                    $count=$req->rowcount(); //Si l'utilisateur est dans la base
+                    if ($count==1){
                      if($verifReponse['reponse']==$answer){ //Si la réponse à la question secrète est correcte
                     
                         if($newMdp==$confirmMdp){ //Si les deux mots de passe sont identiques
@@ -47,21 +46,18 @@
                             $changeMdp="UPDATE account SET password=:newMdp WHERE username=:username";
                             $changeMdp=$bdd->prepare($changeMdp);
                             $changeMdp->execute(array(":newMdp"=>password_hash($newMdp, PASSWORD_DEFAULT),":username"=>$username));
-                            $_SESSION["success"] = "Votre mot de passe a bien été modifié avec succès !";
+                            $_SESSION["success"] = "Votre mot de passe a bien été modifié avec succès.";
                             header("location: connexion.php");
                         }
                         else{
-                            echo "Les deux mots de passe sont différents."; //Si les deux mdp sont différents
+                            echo "<div class=\"alert alert-failure\">"."Les deux mots de passe sont différents."."</div>"; //Si les deux mdp sont différents
                         } 
-                     }
-                     else{
-                        echo "La réponse à la question secrète est incorrecte."."</br>";
-                        echo "Veuillez répondre à la question :"." ".$verifReponse['question'];
+                     }else{
+                        echo "<div class=\"alert alert-failure\">"."La réponse à la question secrète est incorrecte."."</br>".
+                         "Veuillez répondre à la question :"." ".$verifReponse['question']."</div>";
+                        }
+                    }else{echo "<div class=\"alert alert-failure\">"."Un problème est survenu. Compte inexistant."."</div>";
                     }
-                    //}
-                    //else{
-                    //echo "Un problème est survenu. Compte inexistant.";
-                    //}
                     
                 }
                 catch (Exception $e)  
@@ -72,7 +68,7 @@
         }
         else
         {
-            echo "Changement de mot de passe.";
+            echo "<h1>"."Changement de mot de passe."."</h1>";
         }
 
             ?>
@@ -80,7 +76,7 @@
             <p><label for="username"> Nom d'utilisateur </label><input type="text" name="username" id="username" required="required"/></p>
             <p><label for="reponse"> Reponse à la question secrète </label><input type="text" name="reponse" id="reponse" required="required"/></p>
             <p><label for="nouveauMdp"> Votre nouveau mot de passe </label><input type="password" name="nouveauMdp" id="nouveauMdp"/></p>
-            <p><label for="confirmMdp"> Confirmation de votre nouveau mot de passe </label><input type="password" name="confirmMdp" id="confirmMdp" value=" " /></p>
+            <p><label for="confirmMdp"> Confirmation de votre nouveau mot de passe </label><input type="password" name="confirmMdp" id="confirmMdp" value="" /></p>
             <p><input type="submit" name="resetmdp" value="Valider" onclick="cacherFormulaire()"/></p>
             <!---->
          </form>
