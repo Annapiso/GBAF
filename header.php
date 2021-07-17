@@ -10,13 +10,14 @@
 
 <div id="logo">
  
-    <img src="image/logo.png"/>
+    <a href="index.php"> <img src="image/logo.png"/></a>
 </div>
 
 <div class="connexion">
 
 <?php
     session_start();
+    $pageAvant=$_SERVER['HTTP_REFERER'];
     include("connexionbdd.php");
        
         if(isset($_SESSION['Nom_visiteur']) && isset($_SESSION["prenom_visiteur"])){

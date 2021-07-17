@@ -6,6 +6,7 @@
         <title>GBAF</title>
     </head>
     <body>
+        <div id="bloc_page">
         
         <header>
             <?php include("header.php")?>
@@ -70,11 +71,12 @@
                         $description=explode(".", $donnees['description']);
                         $description=$description[0];
                 
-                        echo "<br>". "<h3><a href=\"acteur.php?acteur=".$donnees['id_acteur']."\">".$donnees['acteur']."</a>"."<br>".$description."..."."<a href=\"acteur.php?acteur=".$donnees['id_acteur']."\" class=\"bouton\">"."Lire la suite <img src=\"image/flecheblanchedroite.png\" alt=\"\"/>"."</a>"."</h3>";
+                        echo "<div>"."<br>". "<h3><a href=\"acteur.php?acteur=".$donnees['id_acteur']."\">".$donnees['acteur']."</a>"."<br>".$description."..."."</div>".
+                            "<a href=\"acteur.php?acteur=".$donnees['id_acteur']."\" class=\"bouton\">"."Lire la suite <img src=\"image/flecheblanchedroite.png\" alt=\"\"/>"."</a>"."</h3>";
                     ?>
                         </div>
                         <div class="post"><?php
-                    echo $count."  " ."commentaires"."  ".$countLike." "."<img src=\"image/like.png\"/>"."  ".$countDislike." "."<img src=\"image/dislike.png\"/>"."<br>";
+                    echo "<div>".$count."  " ."commentaires"."  "."</div>"."<div>".$countLike." "."<img src=\"image/like.png\"/>"."  ".$countDislike." "."<img src=\"image/dislike.png\"/>"."</div>"."<br>";
                     ?>
                         </div>
                 </div>
@@ -94,5 +96,6 @@
         <footer>
         <?php include('footer.php')?>
         </footer>
+    </div>
     </body>
 </html>

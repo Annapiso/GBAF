@@ -12,6 +12,7 @@
         
     </head>
     <body>
+        <div id="bloc_page">
 
         <header>
             <?php include("header.php")?>
@@ -43,7 +44,7 @@
                     
                     if ($newUsername==""||$newQuestion==""||$newReponse=="")
                     {
-                        Echo "Aucun champ n'est rempli.";
+                        Echo "<div class=\"alert alert-failure\">"."Aucun champ n'est rempli."."</div>";
                     }
                     else
                     {
@@ -61,7 +62,8 @@
                        //header(connexion.php");                       
                        
                         //header (''Location:'$_SESSION["pageAvant"] ');// exit();
-                       header ("refresh:2; index.php");
+                       //header ("refresh:2; index.php");
+                        //header ("location: ModifID.php");
                     }
                     
 
@@ -100,5 +102,6 @@
          <footer>
         <?php include('footer.php')?>
         </footer>
+    </div>
     </body>
     </html>

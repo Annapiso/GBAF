@@ -7,6 +7,7 @@
         
     </head>
     <body>
+    	<div id="bloc_page">
 
         <header>
             <?php include("header.php")?>
@@ -31,7 +32,7 @@
 	        $question=$_POST['question'];
 	        $reponse=$_POST['reponse'];
              if($nom ==""||$prenom==""||$username==""||$password==""||$question==""||$reponse=="") {//un champ est vide
-        		echo "*Tous les champs sont obligatoires";
+        		echo "<div class=\"alert alert-failure\">"."*Tous les champs sont obligatoires"."</div>";
         		}
         	else{
         		try{
@@ -42,14 +43,14 @@
 	        		$count=$sql->rowcount();
 	        		//echo $count; //afficher le nombre de ligne.
 	        		if($count>0){
-	        			echo "Ce nom d'utilisateur existe déja.";
+	        			echo "<div class=\"alert alert-failure\">"."Ce nom d'utilisateur existe déja."."</div>";
 	        		}
 	        		else{
 	        			//Ecrire dans la BDD
 						$req = $bdd->prepare('INSERT INTO account(nom, prenom, username, password,question,reponse) VALUES(?, ?,?,?,?,?)');
 						$req->execute(array($nom,$prenom,$username,$password_hash,$question,$reponse));
 						echo"<p>" .htmlspecialchars($nom). " ".htmlspecialchars($prenom)." "."(".htmlspecialchars($username).")"."</p>";
-						echo "Votre compte a été créé avec succès";
+						echo '<div class="alert alert-success">'."Votre compte a été créé avec succès"."</div>";
 						echo "<p><a href=\"connexion.php\">Page de connexion</a></p>";
 						$_SESSION["success"] = "Votre compte a été créé avec succès !";
 						header("location: connexion.php");
@@ -76,10 +77,12 @@
           <p><label for="reponse"> Réponse à la question secrète </label><input type="text" name="reponse" id="reponse"  /></p>
           <p><input type="submit" name="boutonInscription" value="Inscription"/></p>
          </form>
+         
      </section>
       <footer>
         <?php include('footer.php')?>
         </footer>
+    </div>
  </body>
  </html>
 

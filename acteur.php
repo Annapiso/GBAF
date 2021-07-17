@@ -6,6 +6,7 @@
         <title>GBAF</title>
     </head>
     <body>
+        <div id="bloc_page">
         
         <header>
             <?php include("header.php")?>
@@ -88,7 +89,7 @@
                         }
                         else
                         {
-                        echo "Vous avez déjà laissé un commentaire pour cet acteur.";
+                        echo "<div class=\"alert alert-failure\">"."Vous avez déjà laissé un commentaire pour cet acteur."."</div>";
                         }
                     }
                     else
@@ -133,11 +134,7 @@
                     }
 
 
-                 
-                                 
-
-                    //Afficher les commentaires
-                    
+                    // afficher les commentaires
                     echo "<h1>Commentaires sur l'acteur :</h1>"."<br>";
                     if ($count==0)//s'il n'y a pas de commentaire
                         {
@@ -154,7 +151,9 @@
                             $user=$bdd->prepare("SELECT * FROM account WHERE id_user=:id_user");
                             $user->execute(array(":id_user"=>$id));
                             $prenom=$user->FETCH(PDO::FETCH_ASSOC);
-                            echo "<br>"."<em>".$prenom['prenom']."<br>".$donnees["date_add"]."</em>".$donnees["post"]."<br>";
+                            ?><div class="commentaire_user">
+                            <?php
+                            echo "<div class=\"user\">"."<em>".$prenom['prenom']."<br>".$donnees["date_add"]."</em>"."</div>"."<div class=\"com\">".$donnees["post"]."<br>"."</div>"."</div>";
                         }
                         $req->closeCursor();
                     }
@@ -163,13 +162,14 @@
                    
 
                 <div id="vote" style="display:<?php echo $display ?>">
-                <h1>Pour laisser un commentaire :</h1>
+                <h1><p>Pour laisser un commentaire: </p>
                 <form method="POST"> 
-                <label for="commentaire"> Votre commentaire </label><br/>
+                <!--<label for="commentaire"> Votre commentaire </label><br/>-->
                 <textarea class="textarea" name="commentaire" id="commentaire" rows=" " cols=""></textarea>
                 <p><input type="submit" name="boutonPost" value="Envoyer"/></p>
 
                 </form>
+                </h1>
                 </div>
             
               
@@ -223,5 +223,6 @@
          <footer>
         <?php include('footer.php')?>
         </footer>
+    </div>
     </body>
     </html>

@@ -7,6 +7,7 @@
         
     </head>
     <body>
+        <div id="bloc_page">
 
         <header>
             <?php include("header.php")?>
@@ -14,7 +15,7 @@
 
        <section>
 
-         <p>  <b>Bienvenue</b> sur notre page et merci de votre visite.</p>
+         <h1>  <b>Bienvenue</b> sur notre page et merci de votre visite.</h1>
             <!--Vérification des informations de connexion-->
             <?php
             //session_start();
@@ -63,12 +64,12 @@
                         }
                         else //un des infos est vide
                         {
-                        	echo 'Veuillez indiquer vos informations de connexion.';
+                        	echo "<Br>". 'Veuillez indiquer vos informations de connexion.';
                         }
                     }
                     else  //le bouton n'est pas appuyé.           
                 	{
-                		echo 'Veuillez indiquer vos informations de connexion!';
+                		echo "<br>".'Veuillez indiquer vos informations de connexion.';
                    
                		 }
                 }
@@ -87,5 +88,6 @@
          <footer>
         <?php include('footer.php')?>
         </footer>
+    </div>
     </body>
 </html>

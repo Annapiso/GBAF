@@ -24,18 +24,32 @@ src:url('webfont/Amble-Bold-webfont.woff?'iefix) format('woff'),
         font-style: normal;
  }
 
+
 body
 
-{   
-   
-     background:url('image/fond_jaune.png');
-    font-family: Amble,"droid_sansregular",Georgia, arial,"arial black", "times new roman", serif;
-    width: 70%;
-    margin: auto;
-    text-justify: auto;
+{ 
+    
+    background:url('image/fond_jaune.png');
+    font-family: Amble,"droid_sansregular",Georgia, arial,"arial black", "times new roman", serif; 
+     
 
 }
 
+#bloc_page
+{
+  display: flex;
+  flex-direction: column;  
+  justify-content: center;
+  width: 70%;
+  height: 70%;
+  padding: auto;
+text-justify: auto;
+
+  
+  margin: auto;
+
+
+}
 body header, body section
 {
    background:url('image/separateur.png') repeat-x bottom; 
@@ -379,6 +393,10 @@ display: none;
     width: 80%;
     margin: auto;
 }
+.logoActeur
+{
+    width: 80%;
+}
 .bouton
 {
     width: auto;
@@ -428,13 +446,18 @@ width: 25%;
     ;*/
 
 }
+.descriptionActeur
+{
+    width: 80%;
+
+}
 /*logo de l'acteur dans index.php*/
 .logoActeur 
 {
     display: flex;
     justify-content: center;
     width:80% ;
-    border: 1px solid black;
+    
    
 
    

@@ -12,6 +12,7 @@
         
     </head>
     <body>
+        <div id="bloc_page">
 
         <header>
             <?php include("header.php")?>
@@ -91,5 +92,6 @@
          <footer>
         <?php include('footer.php')?>
         </footer>
+    </div>
     </body>
     </html>
