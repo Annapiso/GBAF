@@ -51,6 +51,17 @@ body header, body section
    padding-bottom: 10px;
 }
 
+h1
+{
+    text-align: center;
+}
+
+ul
+{
+list-style-position: inside;
+list-style-type: none;
+}
+
 
 header
 {
@@ -71,6 +82,38 @@ header
 
 }
 
+/*.connexion
+{
+    width: 50%;
+    
+    }*/
+.compte
+{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+    
+    width: 100%;
+     
+    
+}
+
+.utilisateur
+{
+  
+    font-size: 1em;
+
+}
+
+.compte img
+{
+    width: 10%;
+    height: 10%;
+    
+}
+
+
 #menu 
 {
     
@@ -90,24 +133,7 @@ text-decoration: none;
 #menu:hover .sousMenu{
     display: block;
 }
-.compte
-{
-    display: flex;
-    justify-content: flex-end;
-    width: 350px;
-    
-    
-}
 
-.utilisateur
-{
-    align-self: flex-start;
-}
-
-.compte img
-{
-    width: 25%;
-}
 
 
 
@@ -178,6 +204,23 @@ section
    background: url('image/fond_degraderouge.png') repeat-x;
    border-radius: 5px;
 }
+.commentaire_user
+{
+    display: flex;
+   
+    text-align: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 60%;
+    height: 100px;
+    margin: auto;
+}
+.user{
+width:60%;
+
+}
+
 .likeActeur
 {
     display: flex;
@@ -190,8 +233,10 @@ section
 }
 .likeActeur img
 {
-    width:30px;
+    
+    border: none;
     height: 30px;
+    opacity: 0.9;
 }
 .post
 {
@@ -280,6 +325,61 @@ footer
 {
     text-align: center;
 }
+.alert-success
+{
+    color: green;
+    font-size: 1.5em;
+    align-self: center;
+}
+
+.alert-failure
+{
+    color: red;
+    font-size: 1.5em;
+    align-self: center;
+
+}
+#pouce
+{
+    display: flex;
+    justify-content:space-around;
+    width: 50%;
+    
+    margin: auto;
+}
+#pouce img
+{
+
+    
+    width: 100px;
+    border: none;
+    opacity: 0.9;
+}
+
+@media all and (max-width: 1024px)
+{
+
+.compte
+{
+    display: flex;
+    justify-content: flex-end;
+    width: 75%;
+    
+    
+}
+
+.utilisateur
+{
+    align-self: flex-start;
+    font-size: 0.3em;
+}
+
+.compte img
+{
+    width:30px;
+}
+}
+
 /*
 {
     text-align:center;
