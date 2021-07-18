@@ -7,63 +7,57 @@
         
     </head>
     <body>
+    	<div id="bloc_page">
 
-        <header>
-            <?php include("header.php")?>
-        </header>
+        	<header>
+            	<?php include("header.php")?>
+        	</header>
 
-       <section>
+      		 <section>      
+				<?php
+				// on initilise les données
+				$nom = $prenom = $username = $password = $question = $reponse = "";
+				include("connexionbdd.php");
+				if(isset($_POST['boutonInscription'])) {//si le bouton est appuyé 
+			        $nom=$_POST['nom'];
+			        $prenom=$_POST['prenom'];
+			        $username=$_POST['username'];
+			        $password = $_POST['motdepasse'];
+			        $password_hash=password_hash($password,PASSWORD_DEFAULT);
+			        $question=$_POST['question'];
+			        $reponse=$_POST['reponse'];
+		            if($nom ==""||$prenom==""||$username==""||$password==""||$question==""||$reponse=="") {//un champ est vide
+		        		echo "<div class=\"alert alert-failure\">"."*Tous les champs sont obligatoires"."</div>";
+		        		}
+		        		else{// tous les champs sont remplis
+		        			try{		        		
+				        		$sql="SELECT * FROM account WHERE username=:username"; // on vérifie si le nom d'utilisateur est libre
+				        		$sql=$bdd->prepare($sql);
+				        		$sql->execute(array(':username'=>$username));
+				        		$count=$sql->rowcount();
+				        		if($count>0){ // si le nombre de ligne est positif
+				        			echo "<div class=\"alert alert-failure\">"."Ce nom d'utilisateur existe déja."."</div>";
+				        		}
+				        		else{
+				        			//Ecrire dans la BDD
+									$req = $bdd->prepare('INSERT INTO account(nom, prenom, username, password,question,reponse) VALUES(?, ?,?,?,?,?)');
+									$req->execute(array($nom,$prenom,$username,$password_hash,$question,$reponse));
+									echo"<p>" .htmlspecialchars($nom). " ".htmlspecialchars($prenom)." "."(".htmlspecialchars($username).")"."</p>";
+									echo '<div class="alert alert-success">'."Votre compte a été créé avec succès"."</div>";
+									echo "<p><a href=\"connexion.php\">Page de connexion</a></p>";
+									$_SESSION["success"] = "Votre compte a été créé avec succès !";
+									header("location: connexion.php");
+								}
+        					}
+        					catch (PDOException $e) {
+            				echo "Error : ".$e->getMessage();
+       						}
 
-      
-		<?php
-		// Define variables and initialize with empty values
-		$nom = $prenom = $username = $password = $question = $reponse = "";
-		//$nom_err = $prenom_err = $username_err = $password_err = $question_err = $reponse_err = "";
-
-		//session_start();
-		include("connexionbdd.php");
-		if(isset($_POST['boutonInscription'])) {//si le bouton est appuyé 
-	        $nom=$_POST['nom'];
-	        $prenom=$_POST['prenom'];
-	        $username=$_POST['username'];
-	        $password = $_POST['motdepasse'];
-	        $password_hash=password_hash($password,PASSWORD_DEFAULT);
-	        $question=$_POST['question'];
-	        $reponse=$_POST['reponse'];
-             if($nom ==""||$prenom==""||$username==""||$password==""||$question==""||$reponse=="") {//un champ est vide
-        		echo "*Tous les champs sont obligatoires";
-        		}
-        	else{
-        		try{
-        		
-	        		$sql="SELECT * FROM account WHERE username=:username";
-	        		$sql=$bdd->prepare($sql);
-	        		$sql->execute(array(':username'=>$username));
-	        		$count=$sql->rowcount();
-	        		//echo $count; //afficher le nombre de ligne.
-	        		if($count>0){
-	        			echo "Ce nom d'utilisateur existe déja.";
-	        		}
-	        		else{
-	        			//Ecrire dans la BDD
-						$req = $bdd->prepare('INSERT INTO account(nom, prenom, username, password,question,reponse) VALUES(?, ?,?,?,?,?)');
-						$req->execute(array($nom,$prenom,$username,$password_hash,$question,$reponse));
-						echo"<p>" .htmlspecialchars($nom). " ".htmlspecialchars($prenom)." "."(".htmlspecialchars($username).")"."</p>";
-						echo "Votre compte a été créé avec succès";
-						echo "<p><a href=\"connexion.php\">Page de connexion</a></p>";
-						$_SESSION["success"] = "Votre compte a été créé avec succès !";
-						header("location: connexion.php");
-					}
-        		}
-        		catch (PDOException $e) {
-            	echo "Error : ".$e->getMessage();
-       			}
-
-			}
-		}
-		else {//si le bouton n'est pas appuyé
-			//echo "Veuillez remplir ce fomulaire.";
-			}
+						}
+				}
+				else {//si le bouton n'est pas appuyé
+			
+				}
 
 		?>
 		 	<!--Formulaire d'inscriptions-->
@@ -76,11 +70,13 @@
           <p><label for="reponse"> Réponse à la question secrète </label><input type="text" name="reponse" id="reponse"  /></p>
           <p><input type="submit" name="boutonInscription" value="Inscription"/></p>
          </form>
+         
      </section>
       <footer>
         <?php include('footer.php')?>
         </footer>
- </body>
+    	</div>
+ 	</body>
  </html>
 
 
