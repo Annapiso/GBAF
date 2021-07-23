@@ -6,9 +6,11 @@
         <link href="style.css" rel="stylesheet"  />
     </head>
     <body>
-        <div id="bloc_page">
-            <header>
-            <?php include("header.php")?>
+          <header>
+            <div id="logoCentre">
+                <?php include("header.php")// en-tête
+                ?>
+                </div>
             </header>
 
             <section>
@@ -77,6 +79,5 @@
                 <footer>
                     <?php include('footer.php')?>
                 </footer>
-            </div>
         </body>
     </html>

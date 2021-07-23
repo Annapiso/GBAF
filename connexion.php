@@ -10,12 +10,11 @@
         <!-- Se connecter au site
              Mot de passe oublier
              Lien vers page de connexion-->
-
-        <div id="bloc_page">
-
             <header>
+                <div id="logoCentre">
                 <?php include("header.php")// en-tête
                 ?>
+                </div>
             </header>
 
             <section>
@@ -92,6 +91,5 @@
             <footer>
                 <?php include('footer.php')?>
             </footer>
-        </div>
     </body>
 </html>

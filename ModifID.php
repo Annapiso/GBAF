@@ -4,77 +4,96 @@
         <meta charset="utf_8"/>
         <title>Page de changement de mot de passe.</title>
         <link href="style.css" rel="stylesheet"  />
-        <!--<script type="text/javascript">
-        function cacherFormulaire(){
-        document.getElementById("formulaire").style.display = "none";
-        }
-        </script>-->
-        
+               
     </head>
     <body>
-
-        <header>
-            <?php include("header.php")?>
+         <header>
+            <div id="logoCentre">
+                <?php include("header.php")// en-tête
+                ?>
+                </div>
         </header>
 
        <section>
         <?php 
-        
-        //session_start();
         include("connexionbdd.php");
-        if(isset($_SESSION['Nom_visiteur']) && isset($_SESSION["prenom_visiteur"])){
-            
-                if(isset($_POST['resetinfo'])){
-                    $newNom=$_POST["nom"];
-                    $newPrenom=$_POST["prenom"];
-                    $newUsername=$_POST["username"];
-                    $newQuestion=$_POST["question"];
-                    $newReponse=$_POST["reponse"];
-                    if ($newNom==""||$newPrenom==""||$newUsername==""||$newQuestion==""||$newReponse=="")
+        if(isset($_SESSION['Nom_visiteur']) && isset($_SESSION["prenom_visiteur"])){ // si l'utilisateur est déjà connecté  
+            if(isset($_POST['resetinfo'])){ // si le bouton est appuyé
+                $newUsername=$_POST["username"];
+                $newQuestion=$_POST["question"];
+                $newReponse=$_POST["reponse"];                   
+                if ($newUsername==""&& $newQuestion==""&&$newReponse=="") //si  tous les champs sont vides
                     {
-                        Echo "Aucun champ n'est rempli.";
+                    Echo "<div class=\"alert alert-failure\">"."Renseignez au moins un champ"."</div>";
                     }
-                    else
-                    {
-                        
-                        $changeInfo="UPDATE account SET nom=:nom, prenom=:prenom ,username=:username, 
-                    question=:question ,reponse=:reponse WHERE id_user=:id_user";
-                        $changeInfo=$bdd->prepare($changeInfo);
-                        $changeInfo->execute(array(":nom"=>$newNom,":prenom"=>$newPrenom,":username"=>$newUsername,":question"=>$newQuestion,":reponse"=>$newReponse,":id_user"=>$_SESSION["Id_visiteur"]));
-                        
-                        $_SESSION["success"] = "Vos informations personnelles ont bien été modifiées avec succès !";
+                else{
+                    if($newUsername!="") // si Username n'est pas vide
+                        {   
+                            $verifID="SELECT * FROM account where username=:username";
+                            $verifID=$bdd->prepare($verifID);
+                            $verifID->execute(array(":username"=>$newUsername));
+                            $count=$verifID->rowcount();
+                            if ($count>0)
+                                {
+                                    echo "<div class=\"alert alert-failure\">"."Ce nom d'utilisateur existe déja."."</div>";
+                                    return false;
+                                }
+                            else                        
+                                {
+                                $changeUsername="UPDATE account SET username=:username WHERE id_user=:id_user";//on modifie les infos
+                                $changeUsername=$bdd->prepare($changeUsername);
+                                $changeUsername->execute(array(":username"=>$newUsername,":id_user"=>$_SESSION["Id_visiteur"]));
 
-                        echo "Vos informations personnelles ont bien été mis à jours. Vous allez être redirigé vers la page de connexion";
-                        header("refresh:2;connexion.php");
-                    }
+                                }
+                            }
+                    else //si username est vide
+                    {}
+                    if($newQuestion!="") //Si la question n'est pas vide
+                        {
+                            $changeQuestion="UPDATE account SET question=:question WHERE id_user=:id_user";//on modifie les infos
+                            $changeQuestion=$bdd->prepare($changeQuestion);
+                            $changeQuestion->execute(array(":question"=>$newQuestion,":id_user"=>$_SESSION["Id_visiteur"]));
+                        }
+                    else //si la question est vide
+                    {}
+                    if($newReponse!="")
+                        {
+                            $changeReponse="UPDATE account SET reponse=:reponse WHERE id_user=:id_user";//on modifie les infos
+                            $changeReponse=$bdd->prepare($changeReponse);
+                            $changeReponse->execute(array(":reponse"=>$newReponse,":id_user"=>$_SESSION["Id_visiteur"]));                                   
+                        }
+                    else
+                    {}
+                    $_SESSION["success"] = "Vos informations personnelles ont bien été modifiées avec succès !";
+                        echo '<div class="alert alert-success">'.$_SESSION["success"]."<br>"."</div>";
                 }
-                else
+            }
+            else// le bouton n'est pas appuyé
                 {
                     
                 }
             ?>
             <h1>Pour modifier vos informations personnelles :</h1>
-             <form method="POST" action="" id="form">
-            <p><label for="nom"> Nom de famille </label><input type="text" name="nom" id="nom" required="required"/></p>
-            <p><label for="prenom"> Prénom </label><input type="text" name="prenom" id="prenom" required="required"/></p>
-            <p><label for="username"> Nom d'utilisateur (pseudo) </label><input type="text" name="username" id="username" required="required"/></p>
-            <p><label for="question"> Question secrète </label><input type="text" name="question" id="question" required="required"/></p>
-            <p><label for="reponse"> Reponse </label><input type="text" name="reponse" id="reponse" required="required" required="required"/></p>
+             <form method="POST" action=" " id="form">
+            <!--<p><label for="nom"> Nom de famille </label><input type="text" name="nom" id="nom" required="required"/></p>
+            <p><label for="prenom"> Prénom </label><input type="text" name="prenom" id="prenom" required="required"/></p>-->
+            <p><label for="username"> Nom d'utilisateur (pseudo) </label><input type="text" name="username" id="username"/></p>
+            <p><label for="question"> Question secrète </label><input type="text" name="question" id="question" /></p>
+            <p><label for="reponse"> Reponse </label><input type="text" name="reponse" id="reponse"/></p>
             <p><input type="submit" name="resetinfo" value="Valider" onclick="cacherFormulaire()"/></p>
             </form>
             <?php
-
         }
-        else
+        else// l'utilisateur n'est pas connecté
         {
             header("location=connexion.php");
         }
+
         ?>
-       <!-- <input type="button" onclick="location.href='https://google.com';" value="Go to Google" />
-        <button><a href="blabla.html">Texte du bouton</a></button>-->
-        </section>
-         <footer>
-        <?php include('footer.php')?>
-        </footer>
+
+            </section>
+            <footer>
+                <?php include('footer.php')?>
+            </footer>
     </body>
-    </html>
+</html>

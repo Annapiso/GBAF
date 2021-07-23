@@ -7,10 +7,11 @@
         
     </head>
     <body>
-    	<div id="bloc_page">
-
-        	<header>
-            	<?php include("header.php")?>
+    		<header>
+            	 <div id="logoCentre">
+                <?php include("header.php")// en-tête
+                ?>
+                </div>
         	</header>
 
       		 <section>      
@@ -29,8 +30,8 @@
 		            if($nom ==""||$prenom==""||$username==""||$password==""||$question==""||$reponse=="") {//un champ est vide
 		        		echo "<div class=\"alert alert-failure\">"."*Tous les champs sont obligatoires"."</div>";
 		        		}
-		        		else{// tous les champs sont remplis
-		        			try{		        		
+		        	else{// tous les champs sont remplis
+		        		try{		        		
 				        		$sql="SELECT * FROM account WHERE username=:username"; // on vérifie si le nom d'utilisateur est libre
 				        		$sql=$bdd->prepare($sql);
 				        		$sql->execute(array(':username'=>$username));
@@ -75,7 +76,6 @@
       <footer>
         <?php include('footer.php')?>
         </footer>
-    	</div>
  	</body>
  </html>
 
