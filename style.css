@@ -1,25 +1,23 @@
 @font-face
 {
 font-family: "Amble";
-
 src:url('webfont/Amble-Bold-webfont.woff');
-src:url('webfont/Amble-Bold-webfont.woff?'iefix) format('woff'),
+src:url('webfont/Amble-Bold-webfont.woff?iefix') format('woff'),
     url('webfont/Amble-Bold-webfont.svg') format('svg'),
     url('webfont/Amble-Bold-webfont.ttf') format('truetype'),
-    url('webfont/Amble-Bold-webfont.eot') format('embedded-opentype')
-
+    url('webfont/Amble-Bold-webfont.eot?#iefix') format('embedded-opentype');
     font-weight: normal;
     font-style: normal;
-
 }
+
 @font-face 
 {
     font-family: 'droid_sansregular';
-    src: url('DroidSans-webfont.eot');
-    src: url('DroidSans-webfont.eot?#iefix') format('embedded-opentype'),
-         url('DroidSans-webfont.woff') format('woff'),
-         url('DroidSans-webfont.ttf') format('truetype'),
-         url('DroidSans-webfont.svg#droid_sansregular') format('svg');
+    src: url('webfont/DroidSans-webfont.eot');
+    src: url('webfont/DroidSans-webfont.eot?#iefix') format('embedded-opentype'),
+         url('webfont/DroidSans-webfont.woff') format('woff'),
+         url('webfont/DroidSans-webfont.ttf') format('truetype'),
+         url('webfont/DroidSans-webfont.svg#droid_sansregular') format('svg');
          font-weight: normal;
         font-style: normal;
  }
@@ -135,7 +133,7 @@ header img
 {   
 display: flex;
 flex-direction: column;
-marging: auto;}
+margin: auto;}
 
 nav ul li a
 {
@@ -158,7 +156,7 @@ section
     height:50vh;
     display: flex;
     flex-direction:column;
-    flex_wrap: wrap-reverse;
+    flex-wrap: wrap-reverse;
     position: absolute;
     top: 250px;
     bottom: 250px;
@@ -176,9 +174,7 @@ section li
 {
     padding-top: 5px;
     border: 3px solid black;
-    overflow: sticky;
-
-    
+ 
    
 }
 
@@ -243,7 +239,6 @@ align-self: center;
     max-width:150px;
     height: auto;    
    margin : auto;
-   padding: auto;
    border: 0;
    opacity: 0.8;
 }
@@ -332,7 +327,6 @@ align-self: center;
 {
     
     border: none;
-    max-width:auto;
     height: 10px;
     opacity: 0.9;
 }
@@ -341,7 +335,6 @@ align-self: center;
     width: 30%;
     max-width: 150px;
    height: 27px;
-   font-size: auto;
    border : 1px solid black; 
    background: url('image/fond_degraderouge.png') repeat-x;
    border-radius: 5px;
@@ -367,7 +360,6 @@ margin: auto;
 .com{
     width:100%;
     max-width: 150px;
-    font-size: auto;
     margin: auto;
 }
 /*page acteur*/
@@ -472,7 +464,6 @@ px*/
 .utilisateur
 {
     align-self: center;
-    font-size: auto;
     
 }
 
@@ -523,22 +514,18 @@ px*/
 {
     
     border: none;
-    max-width:auto;
     height: 10px;
     opacity: 0.9;
 }
 .comsActeur
 {
     width:auto;
-    font-size: auto;
 }
 
 /*commentaire dans acteur*/
 .com
 {
-
  width:auto;
-font-size: auto;
 }
 
 
@@ -548,7 +535,7 @@ font-size: auto;
 .likeActeur
 {
     width: auto;
-    font-size: 0.5;
+    font-size: 0.5em;
     margin-bottom: 0px;
 }
 .likeActeur img
@@ -559,6 +546,5 @@ font-size: auto;
 .comsActeur
 {
     width:auto;
-    font-size: 0.5;
-}*/
+    font-size: 0.5em;
 }
